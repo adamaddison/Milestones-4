@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Milestones</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-sanitize.js"></script>
+	<script src="Code/Milestones Module.js"></script>
+	<script src="Code/Milestones Controller.js"></script>
+
+	<link rel="stylesheet" href="Code/Milestones.css">
+	<link rel="shortcut icon" type="image/png" href="Icons/Milestones.png" />
+</head>
+
+<body><div id="greyedOutBackground"></div><div id="greyedOutBackgroundInfo"></div>
+
+<div ng-app="milestonesModule" ng-controller="milestonesController" id="application">
+
+	<div id="setupWindow">
+	<div id="setupWindowHeader"><span id="info" ng-click="showInfo(true)"><img src="Icons/info.svg" /></span> Configure <span id="doneButton" ng-click="calculateProgressBar()">Done</span></div><br>
+	
+	<p id="openSettings" ng-click="showSettings(true)">Settings <img id="intoSettings" src="Icons/intoSettings.svg" /></p><br>
+	
+	<p>Countdown Name: <input type="text" size="22" ng-model="countdownName"></input></p>
+	<p class="settingsItem" id="endTextHTML"> Countdown End Message: <input type="text" ng-model="countdownEndMessage"></input> </p>
+	<p>Start Date: <input type="date" ng-model="startDate"></input></p>
+	<p>End Date: <input type="date" ng-model="endDate"></input></p><br>
+
+	<p id="milestone1" class="extraMilestones"> Name: <input type="text" size="22" ng-model="milestones[0].name"> Date: <input type="date" size="8" ng-model="milestones[0].date"></input><span ng-click="deleteMilestone(1)"><img class="crossButton" src="Icons/crossButton.svg" /></span></p>
+	<p id="milestone2" class="extraMilestones"> Name: <input type="text" size="22" ng-model="milestones[1].name"> Date: <input type="date" size="8" ng-model="milestones[1].date"></input><span ng-click="deleteMilestone(2)"><img class="crossButton" src="Icons/crossButton.svg" /></span></p>
+	<p id="milestone3" class="extraMilestones"> Name: <input type="text" size="22" ng-model="milestones[2].name"> Date: <input type="date" size="8" ng-model="milestones[2].date"></input><span ng-click="deleteMilestone(3)"><img class="crossButton" src="Icons/crossButton.svg" /></span></p>
+	<p id="milestone4" class="extraMilestones"> Name: <input type="text" size="22" ng-model="milestones[3].name"> Date: <input type="date" size="8" ng-model="milestones[3].date"></input><span ng-click="deleteMilestone(4)"><img class="crossButton" src="Icons/crossButton.svg" /></span></p>
+	<p id="milestone5" class="extraMilestones"> Name: <input type="text" size="22" ng-model="milestones[4].name"> Date: <input type="date" size="8" ng-model="milestones[4].date"></input><span ng-click="deleteMilestone(5)"><img class="crossButton" src="Icons/crossButton.svg" /></span></p>
+	<p id="milestone6" class="extraMilestones"> Name: <input type="text" size="22" ng-model="milestones[5].name"> Date: <input type="date" size="8" ng-model="milestones[5].date"></input><span ng-click="deleteMilestone(6)"><img class="crossButton" src="Icons/crossButton.svg" /></span></p>
+	<p id="milestone7" class="extraMilestones"> Name: <input type="text" size="22" ng-model="milestones[6].name"> Date: <input type="date" size="8" ng-model="milestones[6].date"></input><span ng-click="deleteMilestone(7)"><img class="crossButton" src="Icons/crossButton.svg" /></span></p>
+	<p id="milestone8" class="extraMilestones"> Name: <input type="text" size="22" ng-model="milestones[7].name"> Date: <input type="date" size="8" ng-model="milestones[7].date"></input><span ng-click="deleteMilestone(8)"><img class="crossButton" src="Icons/crossButton.svg" /></span></p>
+	<p id="milestone9" class="extraMilestones"> Name: <input type="text" size="22" ng-model="milestones[8].name"> Date: <input type="date" size="8" ng-model="milestones[8].date"></input><span ng-click="deleteMilestone(9)"><img class="crossButton" src="Icons/crossButton.svg" /></span></p>
+	<p id="milestone10" class="extraMilestones"> Name: <input type="text" size="22" ng-model="milestones[9].name"> Date: <input type="date" size="8" ng-model="milestones[9].date"></input><span ng-click="deleteMilestone(10)"><img class="crossButton" src="Icons/crossButton.svg" /></span></p>
+<br><span id="addMilestone" ng-click="addMilestone()">+ Add Milestone</span>
+	</div>
+
+
+		<div id="settingsWindow">
+	<div id="settingsWindowHeader"><span ng-click="showSettings(false)"><img id="backToConfigure" src="Icons/back.svg" /></span> Settings </div><br>
+	
+	<div class="timeRemainingSelection"><span class="selectionLabel">COUNTDOWN FORMAT</span>
+		<span class="settingsItemSubTitle">Time remaining format:</span>
+		<p class="selectionItem" ng-click="switchTimeRemainingFormat(0)">Days<img id="tickDays" class="tickGraphic" src="Icons/tick.svg"></p>
+		<p class="selectionItem" ng-click="switchTimeRemainingFormat(1)">Weeks and Days<img id="tickWeeks" class="tickGraphic" src="Icons/tick.svg"></p>
+		<p class="selectionItem" ng-click="switchTimeRemainingFormat(2)">Months, Weeks, and Days<img id="tickMonths" class="tickGraphic" src="Icons/tick.svg"></p>
+		<p class="selectionItem" ng-click="switchTimeRemainingFormat(3)">Months and Days<img id="tickMonthsDays" class="tickGraphic" src="Icons/tick.svg"></p>
+	</div>
+	<div class="timeRemainingSelection"><span class="settingsItemSubTitle">Milestone marker format:</span>
+		<p class="selectionItem" ng-click="switchMilestoneMarkerFormat(0)">Percentage<img id="tickPercentage" class="tickGraphic" src="Icons/tick.svg"></p>
+		<p class="selectionItem" ng-click="switchMilestoneMarkerFormat(1)">Day Number<img id="tickDayNum" class="tickGraphic" src="Icons/tick.svg"></p>
+		<p class="selectionItem" ng-click="switchMilestoneMarkerFormat(2)">Date<img id="tickDate" class="tickGraphic" src="Icons/tick.svg"></p>
+	</div>
+
+	<div class="themeSelection">
+	   <span class="selectionLabel">APPEARANCE</span>
+	   <div class="settingsItem" id="themeMenu">
+			<div class="themeOption" ng-click="setTheme(0)"><img id="toggleWeeksRemaining" src="Icons/darkTheme.svg" width="120px" /> <p>Dark</p><img class="themeOptionTickBox" id="tickBoxDark" ng-src="{{darkModeTickBox}}" height="30px" /></div>
+			<div class="themeOption" ng-click="setTheme(1)"><img id="toggleWeeksRemaining" src="Icons/lightTheme.svg" width="120px" /> <p>Light</p><img class="themeOptionTickBox" id="tickBoxLight" ng-src="{{lightModeTickBox}}" height="30px" /></div>
+			<p class="selectionItem" ng-click="toggleAutoTheme()"> Automatic<img id="autoThemeToggle" ng-src="{{toggleSwitchAutoTheme}}" height="30px" /></p>
+	   </div>
+	</div>
+	<p class="settingsItem selectionItem" ng-click="showBackgroundList(DARK_MODE)">Dark Mode Background<img id="downArrowLangs" src="Icons/downArrow.svg"></p>
+	<p class="settingsItem selectionItem" ng-click="showBackgroundList(LIGHT_MODE)">Light Mode Background<img id="downArrowLangs" src="Icons/downArrow.svg"></p>
+	<div id="backgroundSelectionPanel">
+	  <div id="backgroundSelectionHeader"><span ng-if="setBackgroundHTMLParam == DARK_MODE">Dark Mode Background</span><span ng-if="setBackgroundHTMLParam == LIGHT_MODE">Light Mode Background</span></div>
+	  <div id="backgroundSelectionContent">
+		<p class="selectionItem" id="backgroundDefaultOption" ng-click="setBackground('N/A', setBackgroundHTMLParam)">Default<img id="tickBG1" class="tickGraphic" src="Icons/tick.svg"></p>
+		<p class="selectionItem" ng-click="setBackground('https://upload.wikimedia.org/wikipedia/commons/a/aa/Herrsching_am_Ammersee_Bootshaus_351.jpg', setBackgroundHTMLParam)">Boat House<img id="tickBG2" class="tickGraphic" src="Icons/tick.svg"></p>
+		<p class="selectionItem" ng-click="setBackground('https://upload.wikimedia.org/wikipedia/commons/5/57/Building_in_Floyd_Bennett_Field_%2840715h%29.jpg', setBackgroundHTMLParam)">Old Building<img id="tickBG3" class="tickGraphic" src="Icons/tick.svg"></p>
+		<p class="selectionItem" ng-click="setBackground('https://upload.wikimedia.org/wikipedia/commons/6/6c/London_Eye_at_night_2.jpg', setBackgroundHTMLParam)">London Eye<img id="tickBG4" class="tickGraphic" src="Icons/tick.svg"></p>
+		<p class="selectionItem" ng-click="setBackground('https://upload.wikimedia.org/wikipedia/commons/6/66/Bamberg_Bavaria_80_.jpg', setBackgroundHTMLParam)">Canal<img id="tickBG5" class="tickGraphic" src="Icons/tick.svg"></p>
+		<p class="selectionItem" ng-click="setBackground('https://upload.wikimedia.org/wikipedia/commons/a/a1/Gunzesried_Bavaria_Germany_Konraedler-Hof-01.jpg', setBackgroundHTMLParam)">Ski Resort<img id="tickBG6" class="tickGraphic" src="Icons/tick.svg"></p>
+		<p class="selectionItem" ng-click="setBackground('https://upload.wikimedia.org/wikipedia/commons/3/3d/Thurnau%2C_Marktplatz_10%2C_006.jpg', setBackgroundHTMLParam)">Houses<img id="tickBG7" class="tickGraphic" src="Icons/tick.svg"></p>
+		<p class="selectionItem" id="backgroundCustomOption">Custom, Enter web link: <input type="text" name="customBackground" id="customBackground" ng-model="customBackgroundImage" /> <span id="setCustomBgButton" ng-click="setBackground('CUSTOM', setBackgroundHTMLParam)">Set</span><img id="tickBG8" class="tickGraphic" src="Icons/tick.svg"></p>
+	  </div>
+	</div>
+		
+		<div class="languageSelection"> <span class="selectionLabel">COUNTDOWN LANGUAGE</span>
+			<p class="selectionItem" id="selectedLang" ng-click="showLangList()">{{getLang()}}<img id="downArrowLangs" src="Icons/downArrow.svg"></p>
+		</div>
+		<div id="unselectedLangs">
+			<div id="unselectedLangsHeader">Language</div>
+			<div id="unselectedLangsContent">
+			  <p class="selectionItem" ng-click="switchCountdownLanguage(0)" id="tickENcontainer">English<img id="tickEN" class="tickGraphic" src="Icons/tick.svg"></p>
+			  <p class="selectionItem" ng-click="switchCountdownLanguage(1)">Francais<img id="tickFR" class="tickGraphic" src="Icons/tick.svg"></p>
+			  <p class="selectionItem" ng-click="switchCountdownLanguage(2)">Deutsch<img id="tickDE" class="tickGraphic" src="Icons/tick.svg"></p>
+			  <p class="selectionItem" ng-click="switchCountdownLanguage(3)">Español<img id="tickES" class="tickGraphic" src="Icons/tick.svg"></p>
+			  <p class="selectionItem" ng-click="switchCountdownLanguage(4)">Português<img id="tickPT" class="tickGraphic" src="Icons/tick.svg"></p>
+			  <p class="selectionItem" ng-click="switchCountdownLanguage(5)" id="tickITcontainer">Italiano<img id="tickIT" class="tickGraphic" src="Icons/tick.svg"></p>
+			</div>
+		</div>
+		
+		<div style="text-align: left; color: gray; margin: 0"> <span class="selectionLabel">RESET</span>
+		<p class="settingsItem" id="resetValues" ng-click="confirmResetValues()">Reset All Countdown Values</p>
+		<p class="settingsItem" id="resetSettings" ng-click="confirmResetSettings()">Reset Settings to Default</p>
+		</div>
+		
+		</div>
+
+
+<div id="statusBar" ng-click="showStatusBarDialog(true)">{{statusBarDisplayText}}</div>
+<div id="statusBarDialog">
+	<div id="statusBarTitle">{{statusBarDialogTitle}}</div>
+	
+	<div id="statusBarText">
+	{{statusBarDisplayText}}
+	</div>
+
+	<div id="closeInfoStatusBar" ng-click="showStatusBarDialog(false)">Close</div>
+</div>
+
+
+<div id="countdownsMenuIcon" ng-click="showAllCountdowns(true)">
+<div class="hamburgerMenuLine"></div>
+<div class="hamburgerMenuLine"></div>
+<div class="hamburgerMenuLine"></div>
+</div>
+<div id="countdownsMenu">
+	<div id="countdownsMenuHeader"><p><img ng-src="{{plusButtonAllCountdowns}}" id="addCountdownButton" ng-click="addCountdown()" /> All Countdowns <span id="allCountdownsDoneButton" ng-click="showAllCountdowns(false)">Done</span></p></div>
+	<p class="countdownListItem" ng-repeat="i in savedCountdowns track by $index" id="countdown{{$index}}" ng-click="switchCountdown($index)">{{i.countdownName}} <span ng-if="i.countdownName == ''">Countdown {{$index+1}}</span> <span ng-if="numberOfCountdowns > 1" ng-click="confirmDeleteCountdown($index)"><img class="crossButtonCountdownList" src="Icons/crossButton.svg" /></span></p>
+</div>
+
+
+<div id="daysRemaining" ng-click="displayMilestoneCountdowns()">{{labelText(daysUntilEnd - currentDay)}}<img id="downArrow" src="Icons/downArrow.svg"></div>
+<div id="milestoneCountdowns"><div id="milestoneCountdownsHeader">{{MILESTONE_COUNTDOWNS_HEADER}} <span id="milestoneCountdownsDoneButton" ng-click="closeMilestoneCountdowns()">Done</span></div>
+   <div id="milestoneCountdownsContent">
+		<div id="NoMilestonesText" ng-show="numberOfActiveMilestones == 0">No Milestones</div>
+	<span ng-repeat="i in milestones" id="milestone{{$index}}Countdown">
+	   <div id="milestone{{$index}}Name" class="milestoneName"></div>
+	   <div id="daysUntilMilestone{{$index}}" class="daysUntilMilestone"></div>
+	   <div id="milestone{{$index}}ProgressBar" class="milestoneProgressBars"></div>
+	</span>
+   </div>
+</div>
+
+
+<div id="outerProgressBar">
+	<div id="innerProgressBar"></div>
+	<div id="progressLabel">{{currentDayPercentage}}%</div>
+	<div id="milestoneMarker1" class="milestoneMarker"></div>
+	<div id="milestoneMarker2" class="milestoneMarker"></div>
+	<div id="milestoneMarker3" class="milestoneMarker"></div>
+	<div id="milestoneMarker4" class="milestoneMarker"></div>
+	<div id="milestoneMarker5" class="milestoneMarker"></div>
+	<div id="milestoneMarker6" class="milestoneMarker"></div>
+	<div id="milestoneMarker7" class="milestoneMarker"></div>
+	<div id="milestoneMarker8" class="milestoneMarker"></div>
+	<div id="milestoneMarker9" class="milestoneMarker"></div>
+	<div id="milestoneMarker10" class="milestoneMarker"></div>
+
+<div id="milestoneLabel1" class="milestoneLabel extraMilestones" ng-click="standOutLabel(1)" ng-bind="milestoneMarkerText(0)"></div>
+<div id="milestoneLabel2" class="milestoneLabel extraMilestones" ng-click="standOutLabel(2)" ng-bind="milestoneMarkerText(1)"></div>
+<div id="milestoneLabel3" class="milestoneLabel extraMilestones" ng-click="standOutLabel(3)" ng-bind="milestoneMarkerText(2)"></div>
+<div id="milestoneLabel4" class="milestoneLabel extraMilestones" ng-click="standOutLabel(4)" ng-bind="milestoneMarkerText(3)"></div>
+<div id="milestoneLabel5" class="milestoneLabel extraMilestones" ng-click="standOutLabel(5)" ng-bind="milestoneMarkerText(4)"></div>
+<div id="milestoneLabel6" class="milestoneLabel extraMilestones" ng-click="standOutLabel(6)" ng-bind="milestoneMarkerText(5)"></div>
+<div id="milestoneLabel7" class="milestoneLabel extraMilestones" ng-click="standOutLabel(7)" ng-bind="milestoneMarkerText(6)"></div>
+<div id="milestoneLabel8" class="milestoneLabel extraMilestones" ng-click="standOutLabel(8)" ng-bind="milestoneMarkerText(7)"></div>
+<div id="milestoneLabel9" class="milestoneLabel extraMilestones" ng-click="standOutLabel(9)" ng-bind="milestoneMarkerText(8)"></div>
+<div id="milestoneLabel10" class="milestoneLabel extraMilestones" ng-click="standOutLabel(10)" ng-bind="milestoneMarkerText(9)"></div>
+</div>
+
+<br>
+
+<img src="Icons/configure.svg" id="setupButton" ng-click="showSetupWindow()" />
+
+<div id="infoMessage">
+
+	<div id="infoTitle">About</div>
+	
+	<div id="infoText">
+	Milestones is a web app for visually measuring how far you are towards reaching a certain day, and allows you to plot milestones that happen along the way.
+	<br></br>
+	Milestones version 4.1.1 (January 2022)
+	</div>
+
+	<div id="closeInfo" ng-click="showInfo(false)">Close</div>
+</div>
+
+<div id="confirmDeleteDialog" ng-show="showDeleteDialog">
+
+	<div class="confirmTitle">Delete Countdown?</div>
+	
+	<div class="confirmText">
+	This will permanently delete the countdown. Click Yes to confirm or No to cancel.
+	<br>
+	</div>
+
+	<div id="noButtonDeleteDialog" ng-click="deleteCountdown(false)">No</div><div id="yesButtonDeleteDialog" ng-click="deleteCountdown(true)">Yes</div>
+</div>
+
+<div id="confirmMessage">
+
+	<div class="confirmTitle">Reset All Countdown Values?</div>
+	
+	<div class="confirmText">
+	This will reset the current day, end day, countdown name, the countdown end message and all milestone values back to their default values. Click Yes to confirm or No to cancel.
+	<br>
+	</div>
+
+	<div id="noButton" ng-click="resetValues(false)">No</div><div id="yesButton" ng-click="resetValues(true)">Yes</div>
+</div>
+
+<div id="confirmMessageResetSettings">
+
+	<div class="confirmTitle">Reset All Settings?</div>
+	
+	<div class="confirmText">
+	This will reset the time remaining format, milestone marker format, theme, and language back to their default values. Click Yes to confirm or No to cancel.
+	<br>
+	</div>
+
+	<div id="noButtonSettings" ng-click="resetSettings(false)">No</div><div id="yesButtonSettings" ng-click="resetSettings(true)">Yes</div>
+</div>
+
+<div id="errorDialog">
+	<div id="errorDialogTitle" class="confirmTitle">Error - Invalid Input</div>
+	<div id="errorDialogText" class="confirmText">The input caused the following errors: <br></div>
+
+	<div id="okButtonErrorDialog" class="closeInfo" ng-click="closeErrorDialog()">OK</div>
+</div>
+
+</div>
+
+</body>
+
+</html>

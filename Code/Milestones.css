@@ -1,0 +1,978 @@
+body{ font-family: -apple-system, BlinkMacSystemFont, sans-serif; background-size: cover; background-repeat: repeat-y }
+
+@media only screen and (min-width: 1000px)
+{
+	#setupWindow
+	{
+		position: absolute;
+		background: #f1f1f1;
+		border-radius: 12px;
+		width: 400px;
+		font-size: 10pt;
+		left: 50%;
+		transform: translate(-50%);
+		text-align: center;
+		z-index: 12;
+		visibility: hidden;
+		opacity: 0
+	}
+	#settingsWindow
+	{
+		position: absolute;
+		background: #f1f1f1;
+		border-radius: 12px;
+		width: 400px;
+		font-size: 10pt;
+		left: 50%;
+		transform: translate(-50%);
+		text-align: center;
+		z-index: 12;
+		display: none
+	}
+	
+	
+	#setupWindowHeader
+	{
+		background: white;
+		text-align: center;
+		padding: 7px;
+		font-size: 13pt;
+		font-weight: bold;
+		border-radius: 12px 12px 0px 0px;
+		border-bottom: 1px solid lightGrey
+	}
+	#settingsWindowHeader
+	{
+		background: white;
+		text-align: center;
+		padding: 7px;
+		font-size: 13pt;
+		font-weight: bold;
+		border-radius: 12px 12px 0px 0px;
+		border-bottom: 1px solid lightGrey;
+		display: none
+	}
+
+	#addMilestone
+	{
+		font-size: 14pt;
+		margin-top: 6px
+	}
+	
+	
+	#milestoneCountdowns
+	{
+		position: absolute;
+		left: 50%;
+		transform: translate(-50%);
+		border-radius: 12px;
+		width: 340px;
+		box-shadow: 7px 7px 30px 0px rgba(0, 0, 0, 0.4), -7px -7px 30px 0px rgba(0, 0, 0, 0.4);
+		z-index: 10;
+		display: none;
+		top: 113px;
+		
+	}
+	#milestoneCountdownsHeader
+	{
+		text-align: center;
+		font-size: 13pt;
+		font-weight: bold;
+		padding: 7px;
+		border-radius: 12px 12px 0px 0px;
+		border-bottom: 1px solid lightGrey;
+		background: white
+	}
+	#milestoneCountdownsContent
+	{
+		padding: 10px;
+		border-radius: 0px 0px 12px 12px
+	}
+	.milestoneProgressBars
+	{
+		position: relative;
+		display: none;
+		height: 5px;
+		background-color: #b8b8b8;
+		margin-bottom: 5px
+	}
+	.daysUntilMilestone
+	{
+		position: absolute;
+		display: inline-block;
+		right: 10px
+	}
+	.milestoneName
+	{
+		display: inline-block;
+		overflow-x: scroll;
+		width: 74%;
+		white-space: nowrap
+	}
+	
+	#statusBar
+	{
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height: 28px;
+		background-color: rgba(0, 0, 0, 0.6);
+		font-size: 13pt;
+		padding-left: 8px;
+		padding-top: 3pt;
+		box-sizing: border-box;
+		overflow: hidden;
+		color: white
+	}
+	#statusBar:hover
+	{
+		background-color: rgba(65, 65, 65, 0.6)
+	}
+}
+
+@media only screen and (max-width: 999px)
+{
+	#setupWindow
+	{
+		position: absolute;
+		margin-top: -28px;
+		margin-left: -8px;
+		background: #f1f1f1;
+		width: 100%;
+		height: 100%;
+		font-size: 10pt;
+		text-align: center;
+		z-index: 12;
+		overflow: scroll;
+		visibility: hidden;
+		opacity: 0
+	}
+	#settingsWindow
+	{
+		position: absolute;
+		margin-top: -28px;
+		margin-left: -8px;
+		background: #f1f1f1;
+		width: 100%;
+		height: 100%;
+		font-size: 10pt;
+		text-align: center;
+		z-index: 12;
+		overflow: scroll;
+		display: none
+	}
+	
+
+	#setupWindowHeader
+	{
+		background: white;
+		text-align: center;
+		padding: 7px;
+		font-size: 13pt;
+		font-weight: bold;
+		border-bottom: 1px solid lightGrey
+	}
+	#settingsWindowHeader
+	{
+		background: white;
+		text-align: center;
+		padding: 7px;
+		font-size: 13pt;
+		font-weight: bold;
+		border-bottom: 1px solid lightGrey;
+		display: none
+	}
+
+	#addMilestone
+	{
+		position: relative;
+		width: 100%;
+		font-size: 14pt
+	}
+	
+		#milestoneCountdowns
+	{
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height: 100%;
+		box-shadow: 7px 7px 30px 0px rgba(0, 0, 0, 0.4), -7px -7px 30px 0px rgba(0, 0, 0, 0.4);
+		z-index: 10;
+		display: none
+	}
+	#milestoneCountdownsHeader
+	{
+		text-align: center;
+		font-size: 13pt;
+		font-weight: bold;
+		padding: 7px;
+		border-bottom: 1px solid lightGrey;
+		background: white
+	}
+	#milestoneCountdownsContent
+	{
+		padding: 10px;
+		border-radius: 0px;
+		height: 100%
+	}
+		.milestoneProgressBars
+	{
+		position: relative;
+		display: none;
+		height: 5px;
+		background-color: #b8b8b8;
+		margin-bottom: 5px
+	}
+	.daysUntilMilestone
+	{
+		position: absolute;
+		display: inline-block;
+		right: 10px
+	}
+	.milestoneName
+	{
+		display: inline-block;
+		overflow-x: scroll;
+		width: 73%;
+		white-space: nowrap
+	}
+	
+	#statusBar
+	{
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height: 26px;
+		background-color: rgba(0, 0, 0, 0.6);
+		font-size: 13pt;
+		padding-left: 8px;
+		padding-top: 3pt;
+		box-sizing: border-box;
+		overflow: scroll;
+		color: white
+	}
+}
+
+
+#setupWindow p
+{
+	margin-top: 6px;
+	margin-bottom: 0px;
+	background-color: white;
+	padding: 4px
+}
+
+#doneButton
+{
+	position: absolute;
+	right: 14px;
+	font-weight: bold;
+	font-size: 11pt;
+	color: DodgerBlue
+}
+
+#milestoneCountdownsDoneButton
+{
+	font-size: 11pt;
+	color: dodgerblue;
+	position: absolute;
+	right: 10px
+}
+
+#info
+{
+	position: absolute;
+	left: 7px;
+	font-weight: bold;
+	font-size: 10pt
+}
+
+#greyedOutBackground
+{
+	position: fixed;
+	margin-top: -28px;
+	margin-left: -8px;
+	background-color: rgba(0, 0, 0, 0.5);
+	width: 100%;
+	height: 100%;
+	z-index: 11;
+	visibility: hidden;
+	opacity: 0
+}
+
+.extraMilestones
+{
+	display: none
+}
+
+#outerProgressBar
+{
+	position: relative;
+	width: 98%;
+	margin: 0px;
+	height: 40px;
+	padding: 0px;
+	margin: auto;
+	background-color: lightGray;
+	border-radius: 8px 7px 7px 8px;
+	box-shadow: rgba(0, 0, 0, 0.6) 12px 12px 33px 2px, rgba(0, 0, 0, 0.6) -12px -12px 33px 2px
+}
+
+#innerProgressBar
+{
+	position: absolute;
+	left: 0px;
+	height: 40px;
+	padding: 0px;
+	background-color: black;
+	border-radius: 0px;
+	-webkit-transition: width 0.5s ease-out;
+	transition: width 0.5s ease-out;
+	border-radius: 7px 0 0 7px
+}
+
+.milestoneMarker
+{
+	position: absolute;
+	width: 5px;
+	height: 42px;
+	padding: 0px;
+	background-color: DodgerBlue;
+	-webkit-transition: height 0.2s ease-out;
+	transition: height 0.2s ease-out;
+	border-radius: 6px 6px 0 0;
+	top: 3px
+}
+
+.milestoneLabel
+{
+	position: absolute;
+	height: 18px;
+	width: -webkit-fit-content;
+	width: -moz-fit-content;
+	width: fit-content;
+	top: 42px;
+	background-color: DodgerBlue;
+	color: white;
+	padding: 5px;
+	border-radius: 16px;
+	font-size: 12pt;
+	transform: translate(-19px);
+	-webkit-transition: top 0.2s ease-out;
+	transition: top 0.2s ease-out
+}
+
+.milestoneLabel:hover
+{
+	background-color: #0073e6
+}
+
+#progressLabel
+{
+	position: absolute;
+	width: 52px;
+	text-align: center;
+	top: 50%;
+	padding: 5px;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: white;
+	background-color: black;
+	font-size: 12pt;
+	border-radius: 16px;
+	z-index: 9;
+	font-weight: bold
+}
+
+#daysRemaining
+{
+	position: relative;
+	text-align: center;
+	padding: 5px;
+	font-size: 21pt;
+	font-weight: bold;
+	margin-top: 28px;
+	z-index: 9;
+	margin-left: 55px;
+	text-shadow: 1px 1px 7px #ffffff, -1px -1px 5px #ffffff
+}
+#daysRemaining:hover{ color: gray ! important }
+
+input[type=number]
+{
+	width: 40px
+}
+
+input[type=date]
+{
+	width: 95px
+}
+
+p.extraMilestones input[type=text]
+{
+	width: 165px
+}
+
+#infoMessage
+{
+	position: absolute;
+	background-color: white;
+	border-radius: 12px;
+	width: 300px;
+	left: 50%;
+	transform: translate(-50%);
+	text-align: center;
+	z-index: 14;
+	display: none
+}
+
+#infoTitle
+{
+	font-size: 13pt;
+	font-weight: bold;
+	padding-top: 13px;
+	padding-bottom: 2px
+}
+
+#infoText
+{
+	font-size: 10pt;
+	padding-bottom: 13px
+}
+
+#statusBarTitle
+{
+	font-size: 13pt;
+	font-weight: bold;
+	padding-top: 13px;
+	padding-bottom: 2px
+}
+
+#statusBarText
+{
+	font-size: 10pt;
+	padding-bottom: 13px
+}
+
+#confirmDeleteDialog
+{
+	position: absolute;
+	background-color: white;
+	border-radius: 12px;
+	width: 300px;
+	left: 50%;
+	transform: translate(-50%);
+	text-align: center;
+	z-index: 14
+}
+
+#confirmMessage
+{
+	position: absolute;
+	background-color: white;
+	border-radius: 12px;
+	width: 300px;
+	left: 50%;
+	transform: translate(-50%);
+	text-align: center;
+	z-index: 14;
+	display: none
+}
+
+#statusBarDialog
+{
+	position: absolute;
+	background-color: white;
+	border-radius: 12px;
+	width: 300px;
+	left: 50%;
+	transform: translate(-50%);
+	text-align: center;
+	z-index: 13;
+	display: none
+}
+
+#confirmMessageResetSettings
+{
+	position: absolute;
+	background-color: white;
+	border-radius: 12px;
+	width: 300px;
+	left: 50%;
+	transform: translate(-50%);
+	text-align: center;
+	z-index: 14;
+	display: none
+}
+
+.confirmTitle
+{
+	font-size: 13pt;
+	font-weight: bold;
+	padding-top: 13px;
+	padding-bottom: 2px
+}
+
+.confirmText
+{
+	font-size: 10pt;
+	padding: 4px;
+	padding-bottom: 13px
+}
+
+#noButtonDeleteDialog
+{
+	display: inline-block;
+	width: 50%;
+	box-sizing: border-box;
+	padding: 11px;
+	color: dodgerBlue;
+	font-weight: bold;
+	border-top: 1px solid lightGrey
+}
+#yesButtonDeleteDialog
+{
+	display: inline-block;
+	width: 50%;
+	box-sizing: border-box;
+	padding: 11px;
+	color: dodgerBlue;
+	font-weight: bold;
+	border-top: 1px solid lightGrey;
+	border-left: 1px solid lightGrey
+}
+
+#noButton
+{
+	display: inline-block;
+	width: 50%;
+	box-sizing: border-box;
+	padding: 11px;
+	color: dodgerBlue;
+	font-weight: bold;
+	border-top: 1px solid lightGrey
+}
+#yesButton
+{
+	display: inline-block;
+	width: 50%;
+	box-sizing: border-box;
+	padding: 11px;
+	color: dodgerBlue;
+	font-weight: bold;
+	border-top: 1px solid lightGrey;
+	border-left: 1px solid lightGrey
+}
+
+#noButtonSettings
+{
+	display: inline-block;
+	width: 50%;
+	box-sizing: border-box;
+	padding: 11px;
+	color: dodgerBlue;
+	font-weight: bold;
+	border-top: 1px solid lightGrey
+}
+#yesButtonSettings
+{
+	display: inline-block;
+	width: 50%;
+	box-sizing: border-box;
+	padding: 11px;
+	color: dodgerBlue;
+	font-weight: bold;
+	border-top: 1px solid lightGrey;
+	border-left: 1px solid lightGrey
+}
+
+#closeInfo
+{
+	padding: 11px;
+	color: dodgerBlue;
+	font-weight: bold;
+	border-top: 1px solid lightGrey
+}
+
+#closeInfo:active
+{
+	padding: 11px;
+	color: dodgerBlue;
+	font-weight: bold;
+	background-color: rgba(0, 0, 0, 0.14);
+	border-top: 1px solid lightGrey;
+	border-radius: 0px 0px 12px 12px
+}
+
+#closeInfoStatusBar
+{
+	padding: 11px;
+	color: dodgerBlue;
+	font-weight: bold;
+	border-top: 1px solid lightGrey
+}
+
+#closeInfoStatusBar:active
+{
+	padding: 11px;
+	color: dodgerBlue;
+	font-weight: bold;
+	background-color: rgba(0, 0, 0, 0.14);
+	border-top: 1px solid lightGrey;
+	border-radius: 0px 0px 12px 12px
+}
+
+#greyedOutBackgroundInfo
+{
+	position: fixed;
+	margin-top: -28px;
+	margin-left: -8px;
+	background-color: rgba(0, 0, 0, 0.5);
+	width: 100%;
+	height: 100%;
+	z-index: 13;
+	display: none
+}
+
+.crossButton{ vertical-align: middle }
+
+#toggleWeeksRemaining{ vertical-align: middle }
+
+#setupButton
+{
+	position: fixed;
+	left: 50%;
+	transform: translate(-50%);
+	width: 275px;
+	font-size: 20pt;
+	bottom: 10px
+}
+
+#openSettings
+{
+	text-align: left;
+	padding: 9px !important
+}
+.settingsItem{ padding: 2px }
+#intoSettings{ vertical-align: middle; position: absolute; right: 9px; width: 18px; }
+
+#backToConfigure
+{
+	width: 93px;
+	position: absolute;
+	left: 10px;
+	top: 0px
+}
+
+.settingsItemSubTitle
+{
+	display: block;
+	color: gray;
+	margin-top: 4px;
+	margin-left: 9px
+}
+
+.timeRemainingSelection
+{
+	text-align: left;
+	color: gray;
+	margin: 0px
+}
+
+.languageSelection
+{
+	text-align: left;
+	color: gray;
+	margin: 0px;
+	margin-bottom: 13px;
+	margin-top: 13px
+}
+
+.themeSelection
+{
+	text-align: left;
+	color: gray;
+	margin: 0px;
+	margin-top: 13px
+}
+.themeOption
+{
+	display: inline-block
+}
+.themeOption p
+{
+	margin-top: 0px;
+	margin-bottom: 5px
+}
+
+#resetValues{ padding: 7px; margin-bottom: 4px; margin-top: 0px; text-align: center }
+
+#resetSettings{ padding: 7px; margin-top: 0px; text-align: center }
+
+#endTextHTML{ padding: 7px }
+
+.selectionItem
+{
+	text-align: left;
+	padding: 9px !important;
+	margin: 0px;
+	border-bottom: 1px solid rgb(188, 188, 188)
+}
+
+.selectionLabel
+{
+	padding: 9px
+}
+
+.tickGraphic
+{
+	 vertical-align: middle; position: absolute; right: 9px; width: 18px; display: none; margin-top: -17px
+}
+
+#downArrow
+{
+	position: relative;
+	width: 18px
+}
+
+input
+{
+	border: 0px;
+	border-bottom: 1px solid rgb(188, 188, 188);
+	font-size: 10pt
+}
+
+#setupWindow
+{
+	-webkit-transition: visibility 0.3s ease-out, opacity 0.3s ease-out;
+	transition: visibility 0.3s ease-out, opacity 0.3s ease-out
+}
+
+#greyedOutBackground
+{
+	-webkit-transition: visibility 0.3s ease-out, opacity 0.3s ease-out;
+	transition: visibility 0.3s ease-out, opacity 0.3s ease-out
+}
+
+#NoMilestonesText
+{
+	text-align: center;
+	font-weight: normal;
+	font-size: 21pt;
+	margin-top: 12px;
+	margin-bottom: 15px;
+	color: gray
+}
+
+#errorDialog
+{
+	position: absolute;
+	background-color: white;
+	border-radius: 12px;
+	width: 300px;
+	left: 50%;
+	transform: translate(-50%);
+	text-align: center;
+	z-index: 13;
+	display: none
+}
+
+#okButtonErrorDialog
+{
+	display: inline-block;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 11px;
+	color: dodgerBlue;
+	font-weight: bold;
+	border-top: 1px solid lightGrey
+}
+
+#okButtonErrorDialog:active
+{
+	display: inline-block;
+	width: 100%;
+	box-sizing: border-box;
+	background-color: rgba(0, 0, 0, 0.14);
+	padding: 11px;
+	color: dodgerBlue;
+	font-weight: bold;
+	border-top: 1px solid lightGrey;
+	border-radius: 0px 0px 12px 12px
+}
+
+#themeMenu
+{
+	background-color: white;
+	text-align: center
+}
+
+#autoThemeToggle
+{
+	position: absolute;
+	width: 60px;
+	display: block;
+	margin-top: -22px;
+	right: 0px
+}
+
+#unselectedLangs
+{
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%);
+	width: 180px;
+	background: black;
+	border-radius: 12px;
+	box-shadow: 7px 7px 30px 0px rgba(0, 0, 0, 0.4), -7px -7px 30px 0px rgba(0, 0, 0, 0.4);
+	visibility: hidden;
+	opacity: 0;
+	-webkit-transition: visibility 0.3s ease-out, opacity 0.3s ease-out;
+	transition: visibility 0.3s ease-out, opacity 0.3s ease-out
+}
+
+#unselectedLangsHeader
+{
+	border-radius: 12px 12px 0 0;
+	background: white;
+	font-size: 12pt;
+	font-weight: bold;
+	border-bottom: 1px solid lightGray;
+	padding: 7px
+}
+
+#downArrowLangs
+{
+	vertical-align: middle; position: absolute; right: 9px; width: 18px; display: block; margin-top: -17px
+}
+
+#tickITcontainer
+{
+	border-radius: 0 0 12px 12px
+}
+
+#backgroundSelectionPanel
+{
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%);
+	width: 250px;
+	background: black;
+	border-radius: 12px;
+	box-shadow: 7px 7px 30px 0px rgba(0, 0, 0, 0.4), -7px -7px 30px 0px rgba(0, 0, 0, 0.4);
+	visibility: hidden;
+	opacity: 0;
+	-webkit-transition: visibility 0.3s ease-out, opacity 0.3s ease-out;
+	transition: visibility 0.3s ease-out, opacity 0.3s ease-out
+}
+
+#backgroundSelectionHeader
+{
+	border-radius: 12px 12px 0 0;
+	background: white;
+	font-size: 12pt;
+	font-weight: bold;
+	border-bottom: 1px solid lightGray;
+	padding: 7px;
+	
+}
+
+#backgroundCustomOption
+{
+	border-radius: 0 0 12px 12px
+}
+
+#setCustomBgButton
+{
+	display: inline-block;
+	font-weight: bold;
+	font-size: 13pt;
+	border-radius: 6px;
+	padding: 4px;
+	background-color: rgba(150, 150, 150, 0.5)
+}
+
+#countdownsMenu
+{
+	display: block;
+	position: absolute;
+	width: 250px;
+	left: -250px;
+	height: 100%;
+	background-color: rgb(241, 241, 241);
+	top: 0px;
+	z-index: 10;
+	-webkit-transition: left 0.3s ease-out;
+	transition: left 0.3s ease-out
+}
+
+#countdownsMenuHeader p
+{
+	margin: 0px;
+	padding: 10px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 13pt;
+	border-bottom: 1px solid lightGrey;
+	margin-bottom: 15px
+}
+
+.countdownListItem
+{
+	display: block;
+	padding: 9px;
+	border-bottom: 1px solid rgb(188, 188, 188);
+	background-color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
+	margin: 0px;
+	overflow-x: scroll;
+	white-space: nowrap
+}
+
+#countdownsMenuIcon
+{
+	position: absolute;
+	width: 68px;
+	height: 30px;
+	background-color: black;
+	z-index: 10;
+	top: 33px;
+	left: 5px;
+	border-radius: 19px
+}
+.hamburgerMenuLine
+{
+	width: 40px;
+	position: relative;
+	height: 4px;
+	background-color: lightGray;
+	left: 14px;
+	top: 1px;
+	margin-top: 4px
+}
+
+#allCountdownsDoneButton
+{
+	font-size: 11pt;
+	color: dodgerblue;
+	position: absolute;
+	right: 10px
+}
+
+#addCountdownButton
+{
+	position: absolute;
+	left: 9px;
+	top: 9px;
+	width: 22px
+}
+
+.crossButtonCountdownList
+{
+	position: absolute;
+	right: 8px;
+	margin-top: 2px
+}
